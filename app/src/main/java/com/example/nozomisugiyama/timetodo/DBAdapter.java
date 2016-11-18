@@ -133,7 +133,7 @@ public class DBAdapter {
         db.insertOrThrow(TABLE_PLANS, null, values);
     }
 
-    public Cursor getAllOrder() {
+    public Cursor getAllplans() {
         return db.query(TABLE_PLANS, null, null, null, null, null, null);
     }
 

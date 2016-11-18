@@ -3,9 +3,7 @@ package com.example.nozomisugiyama.timetodo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TabFragment.OnFragmentInteractionListener} interface
+ * {@link MonthFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TabFragment#newInstance} factory method to
+ * Use the {@link MonthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabFragment extends Fragment {
+public class MonthFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +29,7 @@ public class TabFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public TabFragment() {
+    public MonthFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +39,11 @@ public class TabFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TabFragment.
+     * @return A new instance of fragment MonthFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TabFragment newInstance(String param1, String param2) {
-        TabFragment fragment = new TabFragment();
+    public static MonthFragment newInstance(String param1, String param2) {
+        MonthFragment fragment = new MonthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,47 +64,7 @@ public class TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tab_order, container, false);
-
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.addTab(tabLayout.newTab());
-
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
-        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager()));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                 //       mListener.setFabImageFromFragment(R.drawable.ic_menu_send);
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                 //       mListener.setFabImageFromFragment(R.mipmap.ic_launcher);
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-/*
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.mipmap.ic_receipt_wht);
-        tabLayout.getTabAt(1).setIcon(R.mipmap.ic_pen_wht);
-        tabLayout.getTabAt(2).setIcon(R.mipmap.ic_db_wht);*/
-
-        return view;
+        return inflater.inflate(R.layout.fragment_month, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -114,7 +72,6 @@ public class TabFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-
     }
 
     @Override
