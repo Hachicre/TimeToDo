@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,7 @@ public class TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tab_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab, container, false);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.addTab(tabLayout.newTab());
@@ -107,6 +109,46 @@ public class TabFragment extends Fragment {
         tabLayout.getTabAt(2).setIcon(R.mipmap.ic_db_wht);*/
 
         return view;
+    }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment fragment = null;
+
+            switch (position) {
+                case 0:
+                    //mListener.setFabImageFromFragment(R.drawable.ic_menu_send);
+                    //fragment = new OrderEntryFragment();
+                    break;
+                case 1:
+                    //fragment = new OrderEditFragment();
+                    break;
+                case 2:
+                    //mListener.setFabImageFromFragment(R.mipmap.ic_launcher);
+                    //fragment = new OrderDBFragment();
+                    break;
+                default:
+                    break;
+            }
+            return fragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return null;
+        }
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
