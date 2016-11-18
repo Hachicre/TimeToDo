@@ -1,6 +1,7 @@
 package com.example.nozomisugiyama.timetodo.math;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.nozomisugiyama.timetodo.DBAdapter;
 
@@ -10,20 +11,27 @@ import com.example.nozomisugiyama.timetodo.DBAdapter;
 
 public class TimeTo {
 
-    private Context context;
-
+    private DBAdapter dbAdapter = null;
     TimeTo (Context context){
-        this.context = context;
+        dbAdapter = new DBAdapter(context);
     }
 
-    public boolean addTimeTo(long fromDate, long toDate, String title, String memo) {
-        DBAdapter dbAdapter = new DBAdapter(this.context);
+    public boolean addPlan(long fromDate, long toDate, String title, String memo) {
         try {
             dbAdapter.savePlan(fromDate, toDate, title, memo);
         } catch (Exception e) {
             return Boolean.FALSE;
         }
         return Boolean.TRUE;
+    }
+
+    public getAllPlan() {
+        Cursor allplans = dbAdapter.getAllplans();
+        allplans.getLong(allplans.getColumnIndex("_id"));
+        allplans.getInt(allplans.getColumnIndex("from"));
+        allplans.getInt(allplans.getColumnIndex("to"));
+        allplans.getString(allplans.getColumnIndex("title"));
+        allplans.getString(allplans.getColumnIndex("memo"));
     }
 
     private long whatDays (long toDate, long fromDate){
