@@ -21,57 +21,13 @@ public class DBAdapter {
     public static final String COL_LASTUPDATE = "lastupdate";
     */
 
-    public static final String TABLE_COURSES_NAME = "courses";
-    public static final String COL_COURSE_ID = "_id";
-    public static final String COL_COURSE_NAME = "name";
-    public static final String COL_COURSE_GIRLS_MONEY = "girls_money";
-    public static final String COL_COURSE_SHOPS_MONEY = "shops_money";
-
-    public static final String TABLE_SEGMENTS_NAME = "segments";
-    public static final String COL_SEGMENT_ID = "_id";
-    public static final String COL_SEGMENT_NAME = "name";
-    public static final String COL_SEGMENT_GIRLS_MONEY = "girls_money";
-    public static final String COL_SEGMENT_SHOPS_MONEY = "shops_money";
-
-    public static final String TABLE_GIRLS_NAME = "girls";
-    public static final String COL_GIRL_ID = "_id";
-    public static final String COL_GIRL_NAME = "name";
-    public static final String COL_GIRL_RANK_ID = "rank_id";
-
-    public static final String TABLE_RANKS_NAME = "ranks";
-    public static final String COL_RANK_ID = "_id";
-    public static final String COL_RANK_NAME = "name";
-    public static final String COL_RANK_GIRLS_MONEY = "girls_money";
-    public static final String COL_RANK_SHOPS_MONEY = "shops_money";
-
-    public static final String TABLE_OPTIONS_NAME = "options";
-    public static final String COL_OPTION_ID = "_id";
-    public static final String COL_OPTION_NAME = "name";
-    public static final String COL_OPTION_GIRLS_MONEY = "girls_money";
-    public static final String COL_OPTION_SHOPS_MONEY = "shops_money";
-
-    public static final String TABLE_DISCOUNTS_NAME = "discounts";
-    public static final String COL_DISCOUNT_ID = "_id";
-    public static final String COL_DISCOUNT_NAME = "name";
-    public static final String COL_DISCOUNT_GIRLS_MONEY = "girls_money";
-    public static final String COL_DISCOUNT_SHOPS_MONEY = "shops_money";
-
-    public static final String TABLE_ORDERS_NAME = "orders";
-    public static final String COL_ORDER_ID = "_id";
-    public static final String COL_ORDER_COURSE_ID = "course_id";
-    public static final String COL_ORDER_GIRL_ID = "girl_id";
-    public static final String COL_ORDER_SEGMENT_ID = "segmentation_id";
-    public static final String COL_ORDER_GIRL_3P_ID = "girl_3p_id";
-    public static final String COL_ORDER_SEGMENT_3P_ID = "segmentation_3p_id";
-    public static final String COL_ORDER_DATE = "date";
-
-    public static final String TABLE_ORDER_DISCOUNTS_NAME = "order_discount";
-    public static final String COL_ORDER_DISCOUNT_ORDER_ID = "order_id";
-    public static final String COL_ORDER_DISCOUNT_DISCOUNT_ID = "discount_id";
-
-    public static final String TABLE_ORDER_OPTIONS__NAME = "order_option";
-    public static final String COL_ORDER_OPTION_ORDER_ID = "order_id";
-    public static final String COL_ORDER_OPTION_OPTION_ID = "option_id";
+    public static final String TABLE_PLANS = "plans";
+    public static final String COL_ID = "_id";
+    public static final String COL_FROM = "from";
+    public static final String COL_TO = "to";
+    public static final String COL_NOW = "now";
+    public static final String COL_TITLE = "title";
+    public static final String COL_MEMO = "memo";
 
     protected final Context context;
     protected DatabaseHelper dbHelper;
@@ -104,91 +60,13 @@ public class DBAdapter {
 
 
             db.execSQL(
-                    "CREATE TABLE " + TABLE_COURSES_NAME + " ("
-                            + COL_COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_COURSE_NAME + " TEXT NOT NULL, "
-                            + COL_COURSE_GIRLS_MONEY + " INTEGER NOT NULL, "
-                            + COL_COURSE_SHOPS_MONEY + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_SEGMENTS_NAME + " ("
-                            + COL_SEGMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_SEGMENT_NAME + " TEXT NOT NULL, "
-                            + COL_SEGMENT_GIRLS_MONEY + " INTEGER NOT NULL, "
-                            + COL_SEGMENT_SHOPS_MONEY + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_GIRLS_NAME + " ("
-                            + COL_GIRL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_GIRL_NAME + " TEXT NOT NULL, "
-                            + COL_GIRL_RANK_ID + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_RANKS_NAME + " ("
-                            + COL_RANK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_RANK_NAME + " TEXT NOT NULL, "
-                            + COL_RANK_GIRLS_MONEY + " INTEGER NOT NULL, "
-                            + COL_RANK_SHOPS_MONEY + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_OPTIONS_NAME + " ("
-                            + COL_OPTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_OPTION_NAME + " TEXT NOT NULL, "
-                            + COL_OPTION_GIRLS_MONEY + " INTEGER NOT NULL, "
-                            + COL_OPTION_SHOPS_MONEY + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_DISCOUNTS_NAME + " ("
-                            + COL_DISCOUNT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_DISCOUNT_NAME + " TEXT NOT NULL, "
-                            + COL_DISCOUNT_GIRLS_MONEY + " INTEGER NOT NULL, "
-                            + COL_DISCOUNT_SHOPS_MONEY + " INTEGER NOT NULL"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_ORDERS_NAME + " ("
-                            + COL_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_ORDER_COURSE_ID + " INTEGER NOT NULL, "
-                            + COL_ORDER_GIRL_ID + " INTEGER NOT NULL, "
-                            + COL_ORDER_SEGMENT_ID + " INTEGER NOT NULL, "
-                            + COL_ORDER_GIRL_3P_ID + " INTEGER NULL, "
-                            + COL_ORDER_SEGMENT_3P_ID + " INTEGER NULL, "
-                            + COL_ORDER_DATE + " TEXT NOT NULL, " //ISO8601 表記の文字列("YYYY-MM-DD HH:MM:SS.SSS")
-
-                            + "FOREIGN KEY(" + COL_ORDER_COURSE_ID + ") REFERENCES " + TABLE_COURSES_NAME + "(" + COL_COURSE_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_GIRL_ID + ") REFERENCES " + TABLE_GIRLS_NAME + "(" + COL_GIRL_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_SEGMENT_ID + ") REFERENCES " + TABLE_SEGMENTS_NAME + "(" + COL_SEGMENT_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_GIRL_3P_ID + ") REFERENCES " + TABLE_GIRLS_NAME + "(" + COL_GIRL_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_SEGMENT_3P_ID + ") REFERENCES " + TABLE_SEGMENTS_NAME + "(" + COL_SEGMENT_ID + ")"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_ORDER_DISCOUNTS_NAME + " ("
-                            + COL_ORDER_DISCOUNT_ORDER_ID + " INTEGER NOT NULL, "
-                            + COL_ORDER_DISCOUNT_DISCOUNT_ID + " INTEGER NOT NULL, "
-                            + "FOREIGN KEY(" + COL_ORDER_DISCOUNT_ORDER_ID + ") REFERENCES " + TABLE_ORDERS_NAME + "(" + COL_ORDER_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_DISCOUNT_DISCOUNT_ID + ") REFERENCES " + TABLE_DISCOUNTS_NAME + "(" + COL_DISCOUNT_ID + ")"
-                            + ");"
-            );
-
-            db.execSQL(
-                    "CREATE TABLE " + TABLE_ORDER_OPTIONS__NAME + " ("
-                            + COL_ORDER_OPTION_ORDER_ID + " INTEGER NOT NULL, "
-                            + COL_ORDER_OPTION_OPTION_ID + " INTEGER NOT NULL, "
-                            + "FOREIGN KEY(" + COL_ORDER_OPTION_ORDER_ID + ") REFERENCES " + TABLE_ORDERS_NAME + "(" + COL_ORDER_ID + "), "
-                            + "FOREIGN KEY(" + COL_ORDER_OPTION_OPTION_ID + ") REFERENCES " + TABLE_OPTIONS_NAME + "(" + COL_OPTION_ID + ")"
+                    "CREATE TABLE " + TABLE_PLANS + " ("
+                            + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + COL_FROM + " INTEGER NOT NULL, "
+                            + COL_TO + " INTEGER NOT NULL, "
+                            + COL_NOW + " INTEGER NOT NULL, "
+                            + COL_TITLE + " TEXT NOT NULL, "
+                            + COL_MEMO + " TEXT"
                             + ");"
             );
         }
@@ -199,15 +77,7 @@ public class DBAdapter {
                 int oldVersion,
                 int newVersion) {
             //db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_OPTIONS__NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DISCOUNTS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SEGMENTS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_GIRLS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_RANKS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPTIONS_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCOUNTS_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLANS);
             onCreate(db);
         }
 
@@ -255,17 +125,19 @@ public class DBAdapter {
 
     */
 
-    public void saveTest(int couse, int girl, int segment, String date) {
+    public void savePlan(long from, long to, long now, String title, String memo) {
         ContentValues values = new ContentValues();
-        values.put(COL_ORDER_COURSE_ID, couse);
-        values.put(COL_ORDER_GIRL_ID, girl);
-        values.put(COL_ORDER_SEGMENT_ID, segment);
-        values.put(COL_ORDER_DATE, date);
+        values.put(COL_FROM, from);
+        values.put(COL_TO, to);
+        values.put(COL_NOW, now);
+        values.put(COL_TITLE, title);
+        values.put(COL_MEMO, memo);
 
-        db.insertOrThrow(TABLE_ORDERS_NAME, null, values);
+        db.insertOrThrow(TABLE_PLANS, null, values);
     }
 
     public Cursor getAllOrder() {
-        return db.query(TABLE_ORDERS_NAME, null, null, null, null, null, null);
+        return db.query(TABLE_PLANS, null, null, null, null, null, null);
     }
+
 }
