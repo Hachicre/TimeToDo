@@ -1,17 +1,28 @@
 package com.example.nozomisugiyama.timetodo.math;
 
+import android.content.Context;
+
 import com.example.nozomisugiyama.timetodo.DBAdapter;
 
-import java.util.Date;
 /**
  * Created by NozomiSugiyama on 2016/11/18.
  */
 
-
 public class TimeTo {
 
-    public boolean addTimeTo(String title, String memo, long fromDate, long toDate) {
-        
+    private Context context;
+
+    TimeTo (Context context){
+        this.context = context;
+    }
+
+    public boolean addTimeTo(long fromDate, long toDate, String title, String memo) {
+        DBAdapter dbAdapter = new DBAdapter(this.context);
+        try {
+            dbAdapter.savePlan(fromDate, toDate, title, memo);
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
         return Boolean.TRUE;
     }
 
