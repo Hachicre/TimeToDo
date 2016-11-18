@@ -123,14 +123,14 @@ public class TabFragment extends Fragment {
             switch (position) {
                 case 0:
                     //mListener.setFabImageFromFragment(R.drawable.ic_menu_send);
-                    //fragment = new OrderEntryFragment();
+                    fragment = new DaysFragment();
                     break;
                 case 1:
-                    //fragment = new OrderEditFragment();
+                    fragment = new MonthFragment();
                     break;
                 case 2:
                     //mListener.setFabImageFromFragment(R.mipmap.ic_launcher);
-                    //fragment = new OrderDBFragment();
+                    fragment = new YearFragment();
                     break;
                 default:
                     break;
