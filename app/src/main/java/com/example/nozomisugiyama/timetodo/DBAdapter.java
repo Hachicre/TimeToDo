@@ -25,7 +25,6 @@ public class DBAdapter {
     public static final String COL_ID = "_id";
     public static final String COL_FROM = "from";
     public static final String COL_TO = "to";
-    public static final String COL_NOW = "now";
     public static final String COL_TITLE = "title";
     public static final String COL_MEMO = "memo";
 
@@ -64,7 +63,6 @@ public class DBAdapter {
                             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                             + COL_FROM + " INTEGER NOT NULL, "
                             + COL_TO + " INTEGER NOT NULL, "
-                            + COL_NOW + " INTEGER NOT NULL, "
                             + COL_TITLE + " TEXT NOT NULL, "
                             + COL_MEMO + " TEXT"
                             + ");"
@@ -125,11 +123,10 @@ public class DBAdapter {
 
     */
 
-    public void savePlan(long from, long to, long now, String title, String memo) {
+    public void savePlan(long from, long to, String title, String memo) {
         ContentValues values = new ContentValues();
         values.put(COL_FROM, from);
         values.put(COL_TO, to);
-        values.put(COL_NOW, now);
         values.put(COL_TITLE, title);
         values.put(COL_MEMO, memo);
 
