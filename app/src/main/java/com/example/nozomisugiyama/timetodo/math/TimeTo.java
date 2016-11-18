@@ -1,7 +1,8 @@
 package com.example.nozomisugiyama.timetodo.math;
 
-import java.util.Date;
+import com.example.nozomisugiyama.timetodo.DBAdapter;
 
+import java.util.Date;
 /**
  * Created by NozomiSugiyama on 2016/11/18.
  */
@@ -9,17 +10,12 @@ import java.util.Date;
 
 public class TimeTo {
 
-    private long fromDate;
-    private long toDate;
-    private Date now;
-    private String memo;
-
-    TimeTo(Long fromDate, Long toDate) {
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+    public boolean addTimeTo(String title, String memo, long fromDate, long toDate) {
+        
+        return Boolean.TRUE;
     }
 
-    public long whatDays (){
-        return  ( this.toDate - this.fromDate ) / (1000 * 60 * 60 * 24 );
+    private long whatDays (long toDate, long fromDate){
+        return  ( toDate - fromDate ) / (1000 * 60 * 60 * 24 );
     }
 }
