@@ -26,7 +26,7 @@ public class TimeTo {
     }
 
 
-    public getAllPlan() {
+    public void getAllPlan() {
         Cursor allplans = dbAdapter.getAllplans();
         allplans.getLong(allplans.getColumnIndex("_id"));
         allplans.getInt(allplans.getColumnIndex("from"));
