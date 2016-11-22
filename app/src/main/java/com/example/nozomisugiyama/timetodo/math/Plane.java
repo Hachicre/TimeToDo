@@ -6,6 +6,7 @@ package com.example.nozomisugiyama.timetodo.math;
 
 public class Plane {
 
+    private Integer id = null;
     private long from;
     private long to;
     private String title;
@@ -20,7 +21,6 @@ public class Plane {
         this.memo = memo;
     }
 
-    private Integer id = null;
 
     public Integer getId() {
         return id;
