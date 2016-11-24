@@ -14,7 +14,8 @@ public class Plane {
 
     Plane(){}
 
-    Plane(long from, long to, String title, String memo) {
+    Plane(int id, long from, long to, String title, String memo) {
+        this.id = id;
         this.from = from;
         this.to = to;
         this.title = title;

@@ -4,10 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.example.nozomisugiyama.timetodo.math.Plane;
+import com.example.nozomisugiyama.timetodo.math.TimeTo;
+
+import java.sql.Time;
+import java.util.List;
 
 
 /**
@@ -75,6 +82,11 @@ public class TopFragment extends Fragment {
         progressBar.setMax(200);
         progressBar.setProgress(80);
 
+        DBAdapter dbAdapter = new DBAdapter(getContext());
+        dbAdapter.savePlan(123, 124, "title", "memo");
+        TimeTo timeTo = new TimeTo(getContext());
+        List<Plane> planse = timeTo.getAllPlan();
+        Log.d("",String.valueOf(planse.get(0).getId()));
         return view;
     }
 

@@ -2,8 +2,12 @@ package com.example.nozomisugiyama.timetodo.math;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.nozomisugiyama.timetodo.DBAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NozomiSugiyama on 2016/11/18.
@@ -12,7 +16,7 @@ import com.example.nozomisugiyama.timetodo.DBAdapter;
 public class TimeTo {
 
     private DBAdapter dbAdapter = null;
-    TimeTo (Context context){
+    public TimeTo(Context context){
         dbAdapter = new DBAdapter(context);
     }
 
@@ -26,13 +30,21 @@ public class TimeTo {
     }
 
 
-    public void getAllPlan() {
+    public List<Plane> getAllPlan () {
         Cursor allplans = dbAdapter.getAllplans();
-        allplans.getLong(allplans.getColumnIndex("_id"));
-        allplans.getInt(allplans.getColumnIndex("from"));
-        allplans.getInt(allplans.getColumnIndex("to"));
-        allplans.getString(allplans.getColumnIndex("title"));
-        allplans.getString(allplans.getColumnIndex("memo"));
+        allplans.moveToFirst();
+        List<Plane> planes = new ArrayList<Plane>();
+        for (int i = 0 ; i < allplans.getCount(); i++) {
+            Plane plane = new Plane(
+                    allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_ID)),
+                    allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_FROM)),
+                    allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_TO)),
+                    allplans.getString(allplans.getColumnIndex(DBAdapter.COL_TITLE)),
+                    allplans.getString(allplans.getColumnIndex(DBAdapter.COL_MEMO))
+            );
+            planes.add(plane);
+        }
+        return planes;
     }
 
     private long whatDays (long toDate, long fromDate){
