@@ -50,10 +50,16 @@ public class Plane {
         return dayChange(this.from, this.to);
     }
 
-    public String fromToNow (){
+    public String fromToNow(){
         SimpleDateFormat sdf = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
         Date date = new Date(System.currentTimeMillis());
         return dayChange(this.from, sdf.format(date));
+    }
+
+    public String nowToTo(){
+        SimpleDateFormat sdf = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
+        Date date = new Date(System.currentTimeMillis());
+        return dayChange(sdf.format(date), this.to);
     }
 
     private String dayChange(String from, String to){
