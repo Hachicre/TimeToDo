@@ -1,5 +1,8 @@
 package com.example.nozomisugiyama.timetodo.math;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -36,9 +39,26 @@ public class Plane {
 
     }
 
-    public long whatDays (){
+    public String whatDays (){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date dateTo = null;
+        Date dateFrom = null;
 
-        return  ( Long.parseLong(this.to) - Long.parseLong(this.from) ) / (1000 * 60 * 60 * 24 );
+        // 日付を作成します。
+        try {
+            dateFrom = sdf.parse(this.from);
+            dateTo = sdf.parse(this.to);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // 日付をlong値に変換します。
+        long dateTimeTo = dateTo.getTime();
+        long dateTimeFrom = dateFrom.getTime();
+
+        // 差分の日数を算出します。
+        long dayDiff = ( dateTimeTo - dateTimeFrom  ) / (1000 * 60 * 60 * 24 );
+        return String.valueOf(dayDiff);
     }
 
     public Integer getId() {
