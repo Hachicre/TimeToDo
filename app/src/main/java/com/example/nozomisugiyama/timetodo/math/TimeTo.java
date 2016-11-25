@@ -19,7 +19,16 @@ public class TimeTo {
     public TimeTo(Context context){
         dbAdapter = new DBAdapter(context);
     }
-
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param fromDate plan from date.
+     * @param toDate plan to date.
+     * @param title plan title.
+     * @param memo plan memo.
+     * @return boolean TRUE or FALSE.
+     */
     public boolean addPlan(long fromDate, long toDate, String title, String memo) {
         try {
             dbAdapter.open();
