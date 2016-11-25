@@ -138,5 +138,4 @@ public class DBAdapter {
     public Cursor getAllPlans() {
         return db.query(TABLE_PLANS, null, null, null, null, null, null);
     }
-
 }
