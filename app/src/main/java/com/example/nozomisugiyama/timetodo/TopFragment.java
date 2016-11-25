@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.nozomisugiyama.timetodo.math.Plane;
 import com.example.nozomisugiyama.timetodo.math.TimeTo;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,11 +79,7 @@ public class TopFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_top, container, false);
 
-        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
-                .findViewById(R.id.progressBar);
 
-        progressBar.setMax(200);
-        progressBar.setProgress(80);
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
 
@@ -91,16 +89,20 @@ public class TopFragment extends Fragment {
 
         List<Plane> plans = timeTo.getAllPlan();
 
-        TextView textView = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
-        textView.setText(String.valueOf(plans.size()));
+        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
+                .findViewById(R.id.progressBar);
 
-        List<String> s = new ArrayList<>();
+        progressBar.setMax(200);
+        progressBar.setProgress(80);
 
-        for (int i = 0; i < plans.size(); i++) {
-            s.add(plans.get(i).getId().toString());
-        }
+        TextView textViewTitle = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
+        textViewTitle.setText(plans.get(plans.size() - 1).getTitle());
 
-        Log.d(TAG, "onCreateView: " + s);
+        TextView textViewMemo = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_memo);
+        textViewMemo.setText(plans.get(plans.size() - 1).getMemo());
+
+        TextView textViewLimit = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_limit);
+        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).whatDays()));
 
         return view;
     }

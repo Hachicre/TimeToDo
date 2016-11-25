@@ -61,8 +61,4 @@ public class TimeTo {
         dbAdapter.close();
         return planes;
     }
-
-    private long whatDays (long toDate, long fromDate){
-        return  ( toDate - fromDate ) / (1000 * 60 * 60 * 24 );
-    }
 }
