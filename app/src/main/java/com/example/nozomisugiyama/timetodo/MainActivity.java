@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity
         YearFragment.OnFragmentInteractionListener,
         TopFragment.OnFragmentInteractionListener {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        DBAdapter adapter = new DBAdapter(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

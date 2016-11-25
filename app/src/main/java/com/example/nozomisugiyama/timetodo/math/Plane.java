@@ -6,7 +6,7 @@ package com.example.nozomisugiyama.timetodo.math;
 
 public class Plane {
 
-    private Integer id = null;
+    private Integer id;
     private long from;
     private long to;
     private String title;

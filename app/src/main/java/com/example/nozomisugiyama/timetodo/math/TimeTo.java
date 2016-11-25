@@ -42,10 +42,11 @@ public class TimeTo {
 
 
     public List<Plane> getAllPlan () {
+        dbAdapter.open();
         Cursor allplans = dbAdapter.getAllPlans();
         allplans.moveToFirst();
         List<Plane> planes = new ArrayList<Plane>();
-        dbAdapter.open();
+
         for (int i = 0 ; i < allplans.getCount(); i++) {
             Plane plane = new Plane(
                     allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_ID)),
@@ -55,6 +56,7 @@ public class TimeTo {
                     allplans.getString(allplans.getColumnIndex(DBAdapter.COL_MEMO))
             );
             planes.add(plane);
+            allplans.moveToNext();
         }
         dbAdapter.close();
         return planes;

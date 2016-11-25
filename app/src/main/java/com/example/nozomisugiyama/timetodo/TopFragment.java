@@ -9,13 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.nozomisugiyama.timetodo.math.Plane;
 import com.example.nozomisugiyama.timetodo.math.TimeTo;
 
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +75,6 @@ public class TopFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         View view = inflater.inflate(R.layout.fragment_top, container, false);
 
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
@@ -83,11 +84,24 @@ public class TopFragment extends Fragment {
         progressBar.setProgress(80);
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
+
         dbAdapter.savePlan(123, 124, "title", "memo");
         TimeTo timeTo = new TimeTo(view.getContext());
-        List<Plane> plans = timeTo.getAllPlan();
-        Log.d("",String.valueOf(plans.get(0).getId()));
         dbAdapter.close();
+
+        List<Plane> plans = timeTo.getAllPlan();
+
+        TextView textView = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
+        textView.setText(String.valueOf(plans.size()));
+
+        List<String> s = new ArrayList<>();
+
+        for (int i = 0; i < plans.size(); i++) {
+            s.add(plans.get(i).getId().toString());
+        }
+
+        Log.d(TAG, "onCreateView: " + s);
+
         return view;
     }
 

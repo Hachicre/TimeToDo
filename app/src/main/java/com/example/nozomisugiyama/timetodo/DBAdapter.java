@@ -125,8 +125,8 @@ public class DBAdapter {
 
     public void savePlan(long from, long to, String title, String memo) {
         ContentValues values = new ContentValues();
-        values.put(COL_FROM, (int)from);
-        values.put(COL_TO, (int)to);
+        values.put(COL_FROM, from);
+        values.put(COL_TO, to);
         values.put(COL_TITLE, title);
         values.put(COL_MEMO, memo);
 
