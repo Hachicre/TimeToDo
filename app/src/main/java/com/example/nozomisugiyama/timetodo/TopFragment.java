@@ -85,31 +85,10 @@ public class TopFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_top, container, false);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-
-        Date dateTo = null;
-        Date dateFrom = null;
-
-        // 日付を作成します。
-        try {
-            dateFrom = sdf.parse("2016/11/25");
-            dateTo = sdf.parse("2017/11/25");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        // 日付をlong値に変換します。
-        long dateTimeTo = dateTo.getTime();
-        long dateTimeFrom = dateFrom.getTime();
-
-        long dayDiff = ( dateTimeTo - dateTimeFrom  ) / (1000 * 60 * 60 * 24 );
-
-        Log.d(TAG, "onCreateView: " + dayDiff);
-
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
 
-        dbAdapter.savePlan(dateTimeFrom, dateTimeTo, "title", "memo");
+        dbAdapter.savePlan("2016/11/25", "2017/11/25", "title", "memo");
         TimeTo timeTo = new TimeTo(view.getContext());
         dbAdapter.close();
 
@@ -118,8 +97,8 @@ public class TopFragment extends Fragment {
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
                 .findViewById(R.id.progressBar);
 
-        progressBar.setMax(200);
-        progressBar.setProgress(80);
+        progressBar.setMax(Integer.parseInt(plans.get(plans.size() - 1).whatDays()));
+        progressBar.setProgress(5);
 
         TextView textViewTitle = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
         textViewTitle.setText(plans.get(plans.size() - 1).getTitle());
@@ -127,8 +106,8 @@ public class TopFragment extends Fragment {
         TextView textViewMemo = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_memo);
         textViewMemo.setText(plans.get(plans.size() - 1).getMemo());
 
-        TextView textViewLimit = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_limit);
-        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).whatDays()));
+        TextView textViewNow = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_now);
+        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).whatDays()));
 
         return view;
     }
