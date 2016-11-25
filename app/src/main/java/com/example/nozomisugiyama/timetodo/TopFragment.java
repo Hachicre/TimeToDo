@@ -81,7 +81,6 @@ public class TopFragment extends Fragment {
 
         progressBar.setMax(200);
         progressBar.setProgress(80);
-
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
         dbAdapter.savePlan(123, 124, "title", "memo");
