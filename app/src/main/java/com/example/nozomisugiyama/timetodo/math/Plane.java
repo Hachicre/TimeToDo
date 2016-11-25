@@ -1,5 +1,7 @@
 package com.example.nozomisugiyama.timetodo.math;
 
+import android.util.Log;
+
 import com.example.nozomisugiyama.timetodo.DBAdapter;
 
 import java.text.DateFormat;
@@ -7,6 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by NozomiSugiyama on 2016/11/18.
@@ -49,7 +53,7 @@ public class Plane {
     public String fromToNow (){
         SimpleDateFormat sdf = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
         Date date = new Date(System.currentTimeMillis());
-        return dayChange(sdf.format(date), this.from);
+        return dayChange(this.from, sdf.format(date));
     }
 
     private String dayChange(String from, String to){
