@@ -42,7 +42,7 @@ public class Plane {
 
     }
 
-    public String whatDays (){
+    public String fromToTo(){
         return dayChange(this.from, this.to);
     }
 

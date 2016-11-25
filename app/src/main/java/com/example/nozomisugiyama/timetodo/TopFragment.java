@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +13,7 @@ import android.widget.TextView;
 import com.example.nozomisugiyama.timetodo.math.Plane;
 import com.example.nozomisugiyama.timetodo.math.TimeTo;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,7 +85,7 @@ public class TopFragment extends Fragment {
         ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
                 .findViewById(R.id.progressBar);
 
-        progressBar.setMax(Integer.parseInt(plans.get(plans.size() - 1).whatDays()));
+        progressBar.setMax(Integer.parseInt(plans.get(plans.size() - 1).fromToTo()));
         progressBar.setProgress(5);
 
         TextView textViewTitle = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
@@ -106,8 +94,11 @@ public class TopFragment extends Fragment {
         TextView textViewMemo = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_memo);
         textViewMemo.setText(plans.get(plans.size() - 1).getMemo());
 
+        TextView textViewLimit = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_limit);
+        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).fromToTo()) + "  Days");
+
         TextView textViewNow = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_now);
-        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).whatDays()));
+        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).fromToNow()));
 
         return view;
     }
