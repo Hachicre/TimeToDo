@@ -34,7 +34,6 @@ public class Plane {
 
     }
 
-
     public Integer getId() {
         return id;
     }
