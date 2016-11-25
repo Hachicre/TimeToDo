@@ -61,8 +61,8 @@ public class DBAdapter {
             db.execSQL(
                     "CREATE TABLE " + TABLE_PLANS + " ("
                             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + COL_FROM + " INTEGER NOT NULL, "
-                            + COL_TO + " INTEGER NOT NULL, "
+                            + COL_FROM + " TEXT NOT NULL, "
+                            + COL_TO + " TEXT NOT NULL, "
                             + COL_TITLE + " TEXT NOT NULL, "
                             + COL_MEMO + " TEXT"
                             + ");"
@@ -123,7 +123,7 @@ public class DBAdapter {
 
     */
 
-    public void savePlan(long from, long to, String title, String memo) {
+    public void savePlan(String from, String to, String title, String memo) {
         ContentValues values = new ContentValues();
         values.put(COL_FROM, from);
         values.put(COL_TO, to);
