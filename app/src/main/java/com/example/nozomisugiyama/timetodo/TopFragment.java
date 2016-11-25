@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,12 @@ import com.example.nozomisugiyama.timetodo.math.TimeTo;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -79,11 +85,31 @@ public class TopFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_top, container, false);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+        Date dateTo = null;
+        Date dateFrom = null;
+
+        // 日付を作成します。
+        try {
+            dateFrom = sdf.parse("2016/11/25");
+            dateTo = sdf.parse("2017/11/25");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // 日付をlong値に変換します。
+        long dateTimeTo = dateTo.getTime();
+        long dateTimeFrom = dateFrom.getTime();
+
+        long dayDiff = ( dateTimeTo - dateTimeFrom  ) / (1000 * 60 * 60 * 24 );
+
+        Log.d(TAG, "onCreateView: " + dayDiff);
 
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
 
-        dbAdapter.savePlan(123, 124, "title", "memo");
+        dbAdapter.savePlan(dateTimeFrom, dateTimeTo, "title", "memo");
         TimeTo timeTo = new TimeTo(view.getContext());
         dbAdapter.close();
 
