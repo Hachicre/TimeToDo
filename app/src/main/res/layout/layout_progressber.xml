@@ -6,7 +6,7 @@
     android:baselineAligned="false">
 
     <TextView
-        android:id="@+id/text_to"
+        android:id="@+id/text_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="65 Days"
@@ -34,7 +34,7 @@
 
 
         <TextView
-            android:id="@+id/text_title"
+            android:id="@+id/text_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="300day"

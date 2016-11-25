@@ -76,5 +76,8 @@ public class Plane {
     }
 
 
+    public long whatDays (){
+        return  ( this.to - this.from ) / (1000 * 60 * 60 * 24 );
+    }
 
 }
