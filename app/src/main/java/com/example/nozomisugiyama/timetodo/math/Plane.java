@@ -1,5 +1,7 @@
 package com.example.nozomisugiyama.timetodo.math;
 
+import java.util.Locale;
+
 /**
  * Created by NozomiSugiyama on 2016/11/18.
  */
@@ -7,8 +9,8 @@ package com.example.nozomisugiyama.timetodo.math;
 public class Plane {
 
     private Integer id;
-    private long from;
-    private long to;
+    private String from;
+    private String to;
     private String title;
     private String memo;
 
@@ -25,13 +27,18 @@ public class Plane {
      * @param memo plane memo.
      * @return A new instance of Plane.
      */
-    Plane(int id, long from, long to, String title, String memo) {
+    Plane(int id, String from, String to, String title, String memo) {
         this.id = id;
         this.from = from;
         this.to = to;
         this.title = title;
         this.memo = memo;
 
+    }
+
+    public long whatDays (){
+
+        return  ( Long.parseLong(this.to) - Long.parseLong(this.from) ) / (1000 * 60 * 60 * 24 );
     }
 
     public Integer getId() {
@@ -42,19 +49,19 @@ public class Plane {
         this.id = id;
     }
 
-    public long getFrom() {
+    public String getFrom() {
         return from;
     }
 
-    public void setFrom(long from) {
+    public void setFrom(String from) {
         this.from = from;
     }
 
-    public long getTo() {
+    public String getTo() {
         return to;
     }
 
-    public void setTo(long to) {
+    public void setTo(String to) {
         this.to = to;
     }
 
@@ -72,11 +79,6 @@ public class Plane {
 
     public void setMemo(String memo) {
         this.memo = memo;
-    }
-
-
-    public long whatDays (){
-        return  ( this.to - this.from ) / (1000 * 60 * 60 * 24 );
     }
 
 }

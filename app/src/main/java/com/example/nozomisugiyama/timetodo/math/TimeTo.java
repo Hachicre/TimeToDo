@@ -29,7 +29,7 @@ public class TimeTo {
      * @param memo plan memo.
      * @return boolean TRUE or FALSE.
      */
-    public boolean addPlan(long fromDate, long toDate, String title, String memo) {
+    public boolean addPlan(String fromDate, String toDate, String title, String memo) {
         try {
             dbAdapter.open();
             dbAdapter.savePlan(fromDate, toDate, title, memo);
@@ -50,8 +50,8 @@ public class TimeTo {
         for (int i = 0 ; i < allplans.getCount(); i++) {
             Plane plane = new Plane(
                     allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_ID)),
-                    allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_FROM)),
-                    allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_TO)),
+                    allplans.getString(allplans.getColumnIndex(DBAdapter.COL_FROM)),
+                    allplans.getString(allplans.getColumnIndex(DBAdapter.COL_TO)),
                     allplans.getString(allplans.getColumnIndex(DBAdapter.COL_TITLE)),
                     allplans.getString(allplans.getColumnIndex(DBAdapter.COL_MEMO))
             );
