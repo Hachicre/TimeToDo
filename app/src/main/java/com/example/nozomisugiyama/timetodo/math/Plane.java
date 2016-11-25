@@ -47,9 +47,9 @@ public class Plane {
     }
 
     public String fromToNow (){
-        SimpleDateFormat df = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
+        SimpleDateFormat sdf = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
         Date date = new Date(System.currentTimeMillis());
-        return dayChange(this.from, df.format(date));
+        return dayChange(sdf.format(date), this.from);
     }
 
     private String dayChange(String from, String to){
