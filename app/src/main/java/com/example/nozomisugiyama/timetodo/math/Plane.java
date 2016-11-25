@@ -14,6 +14,17 @@ public class Plane {
 
     Plane(){}
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param id database _id.
+     * @param from datetime from.
+     * @param to datetime to.
+     * @param title plane title.
+     * @param memo plane memo.
+     * @return A new instance of Plane.
+     */
     Plane(int id, long from, long to, String title, String memo) {
         this.id = id;
         this.from = from;
