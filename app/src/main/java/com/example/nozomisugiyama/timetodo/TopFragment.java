@@ -76,7 +76,7 @@ public class TopFragment extends Fragment {
         DBAdapter dbAdapter = new DBAdapter(view.getContext());
         dbAdapter.open();
 
-        dbAdapter.savePlan("2016/11/25", "2017/11/25", "title", "memo");
+        dbAdapter.savePlan("2015/11/25", "2017/11/25", "title", "memo");
         TimeTo timeTo = new TimeTo(view.getContext());
         dbAdapter.close();
 
@@ -86,7 +86,7 @@ public class TopFragment extends Fragment {
                 .findViewById(R.id.progressBar);
 
         progressBar.setMax(Integer.parseInt(plans.get(plans.size() - 1).fromToTo()));
-        progressBar.setProgress(5);
+        progressBar.setProgress(Integer.parseInt(plans.get(plans.size() - 1).fromToNow()));
 
         TextView textViewTitle = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
         textViewTitle.setText(plans.get(plans.size() - 1).getTitle());
@@ -95,10 +95,10 @@ public class TopFragment extends Fragment {
         textViewMemo.setText(plans.get(plans.size() - 1).getMemo());
 
         TextView textViewLimit = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_limit);
-        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).fromToTo()) + "  Days");
+        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).nowToTo()) + "  Days");
 
         TextView textViewNow = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_now);
-        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).fromToNow()));
+        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).fromToNow()) + " / " + plans.get(plans.size() - 1).fromToTo());
 
         return view;
     }
