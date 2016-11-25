@@ -8,6 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.example.nozomisugiyama.timetodo.math.Plane;
+import com.example.nozomisugiyama.timetodo.math.TimeTo;
+
+import java.util.List;
 
 
 /**
@@ -65,7 +72,36 @@ public class DaysFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_days, container, false);
+        View view =  inflater.inflate(R.layout.fragment_days, container, false);
+
+        DBAdapter dbAdapter = new DBAdapter(view.getContext());
+        dbAdapter.open();
+
+        dbAdapter.savePlan("2015/11/25", "2017/11/25", "title", "memo");
+        TimeTo timeTo = new TimeTo(view.getContext());
+        dbAdapter.close();
+
+        List<Plane> plans = timeTo.getAllPlan();
+
+        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.include_view_top_progress)
+                .findViewById(R.id.progressBar);
+
+        progressBar.setMax(Integer.parseInt(plans.get(plans.size() - 1).fromToTo()));
+        progressBar.setProgress(Integer.parseInt(plans.get(plans.size() - 1).fromToNow()));
+
+        TextView textViewTitle = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_title);
+        textViewTitle.setText(plans.get(plans.size() - 1).getTitle());
+
+        TextView textViewMemo = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_memo);
+        textViewMemo.setText(plans.get(plans.size() - 1).getMemo());
+
+        TextView textViewLimit = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_limit);
+        textViewLimit.setText(String.valueOf(plans.get(plans.size() - 1).nowToTo()) + "  Days");
+
+        TextView textViewNow = (TextView) view.findViewById(R.id.include_view_top_progress).findViewById(R.id.text_now);
+        textViewNow.setText(String.valueOf(plans.get(plans.size() - 1).fromToNow()) + " / " + plans.get(plans.size() - 1).fromToTo());
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
