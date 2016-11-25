@@ -28,6 +28,8 @@ public class DBAdapter {
     public static final String COL_TITLE = "title";
     public static final String COL_MEMO = "memo";
 
+    public static final String DATE_TIME_FORMAT = "yyyy/MM/dd";
+
     protected final Context context;
     protected DatabaseHelper dbHelper;
     protected SQLiteDatabase db;

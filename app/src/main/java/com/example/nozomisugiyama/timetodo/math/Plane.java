@@ -1,5 +1,8 @@
 package com.example.nozomisugiyama.timetodo.math;
 
+import com.example.nozomisugiyama.timetodo.DBAdapter;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,14 +43,24 @@ public class Plane {
     }
 
     public String whatDays (){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return dayChange(this.from, this.to);
+    }
+
+    public String fromToNow (){
+        DateFormat df = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
+        Date date = new Date(System.currentTimeMillis());
+        return dayChange(this.from, df.format(date));
+    }
+
+    private String dayChange(String from, String to){
+        SimpleDateFormat sdf = new SimpleDateFormat(DBAdapter.DATE_TIME_FORMAT);
         Date dateTo = null;
         Date dateFrom = null;
 
         // 日付を作成します。
         try {
-            dateFrom = sdf.parse(this.from);
-            dateTo = sdf.parse(this.to);
+            dateFrom = sdf.parse(from);
+            dateTo = sdf.parse(to);
         } catch (ParseException e) {
             e.printStackTrace();
         }
