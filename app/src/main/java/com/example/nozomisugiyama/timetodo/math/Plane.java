@@ -31,6 +31,7 @@ public class Plane {
         this.to = to;
         this.title = title;
         this.memo = memo;
+
     }
 
 
