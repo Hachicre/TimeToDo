@@ -23,8 +23,8 @@ public class DBAdapter {
 
     public static final String TABLE_PLANS = "plans";
     public static final String COL_ID = "_id";
-    public static final String COL_FROM = "from";
-    public static final String COL_TO = "to";
+    public static final String COL_FROM = "time_from";
+    public static final String COL_TO = "time_to";
     public static final String COL_TITLE = "title";
     public static final String COL_MEMO = "memo";
 
@@ -125,15 +125,15 @@ public class DBAdapter {
 
     public void savePlan(long from, long to, String title, String memo) {
         ContentValues values = new ContentValues();
-        values.put(COL_FROM, from);
-        values.put(COL_TO, to);
+        values.put(COL_FROM, (int)from);
+        values.put(COL_TO, (int)to);
         values.put(COL_TITLE, title);
         values.put(COL_MEMO, memo);
 
         db.insertOrThrow(TABLE_PLANS, null, values);
     }
 
-    public Cursor getAllplans() {
+    public Cursor getAllPlans() {
         return db.query(TABLE_PLANS, null, null, null, null, null, null);
     }
 

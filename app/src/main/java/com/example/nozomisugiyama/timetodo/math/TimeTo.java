@@ -2,7 +2,6 @@ package com.example.nozomisugiyama.timetodo.math;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.example.nozomisugiyama.timetodo.DBAdapter;
 
@@ -15,14 +14,17 @@ import java.util.List;
 
 public class TimeTo {
 
-    private DBAdapter dbAdapter = null;
+    private DBAdapter dbAdapter;
+
     public TimeTo(Context context){
         dbAdapter = new DBAdapter(context);
     }
 
     public boolean addPlan(long fromDate, long toDate, String title, String memo) {
         try {
+            dbAdapter.open();
             dbAdapter.savePlan(fromDate, toDate, title, memo);
+            dbAdapter.close();
         } catch (Exception e) {
             return Boolean.FALSE;
         }
@@ -31,9 +33,10 @@ public class TimeTo {
 
 
     public List<Plane> getAllPlan () {
-        Cursor allplans = dbAdapter.getAllplans();
+        Cursor allplans = dbAdapter.getAllPlans();
         allplans.moveToFirst();
         List<Plane> planes = new ArrayList<Plane>();
+        dbAdapter.open();
         for (int i = 0 ; i < allplans.getCount(); i++) {
             Plane plane = new Plane(
                     allplans.getInt(allplans.getColumnIndex(DBAdapter.COL_ID)),
@@ -44,6 +47,7 @@ public class TimeTo {
             );
             planes.add(plane);
         }
+        dbAdapter.close();
         return planes;
     }
 

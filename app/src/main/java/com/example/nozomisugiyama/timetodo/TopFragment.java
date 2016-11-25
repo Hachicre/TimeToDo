@@ -82,11 +82,13 @@ public class TopFragment extends Fragment {
         progressBar.setMax(200);
         progressBar.setProgress(80);
 
-        DBAdapter dbAdapter = new DBAdapter(getContext());
+        DBAdapter dbAdapter = new DBAdapter(view.getContext());
+        dbAdapter.open();
         dbAdapter.savePlan(123, 124, "title", "memo");
-        TimeTo timeTo = new TimeTo(getContext());
-        List<Plane> planse = timeTo.getAllPlan();
-        Log.d("",String.valueOf(planse.get(0).getId()));
+        TimeTo timeTo = new TimeTo(view.getContext());
+        List<Plane> plans = timeTo.getAllPlan();
+        Log.d("",String.valueOf(plans.get(0).getId()));
+        dbAdapter.close();
         return view;
     }
 
